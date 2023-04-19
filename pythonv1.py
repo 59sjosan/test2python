@@ -11,8 +11,11 @@ while True:
     choice = input("Enter your choice: ").upper()
     if choice == "1":
         Name = input("Enter name: ")
+        while not Name.isalpha():
+            print("Enter Valid Name")
+            Name = input("Enter name: ")
         Number = input("Enter your 10-digit phone number: ")
-        while len(Number)!=10 and Number.isnumeric():
+        while len(Number)!=10 and not Number.isnumeric():
             print("Enter Valid Number")
             Number = input("Enter your 10-digit phone number: ")
         phoneDirectory[Name] = Number
@@ -28,11 +31,14 @@ while True:
     elif choice =="3":
         Name = input("Enter name: ")
         Number = input("Enter new 10-digit phone number: ")
-        while len(Number)!=10 and Number.isnumeric():
+        while len(Number)!=10 and not Number.isnumeric():
             print("Enter Valid Number")
             Number = input("Enter new 10-digit phone number: ")
-        phoneDirectory[Name] = Number
-        print("Record Updated")
+        if Name in phoneDirectory:
+            phoneDirectory[Name] = Number
+            print("Record Updated")
+        else:
+            print("No Record Found")
     elif choice=='4':
         Name = input("Enter name: ")
         if Name in phoneDirectory:
